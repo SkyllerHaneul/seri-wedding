@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=480, viewport-fit=cover" />
+  <title>서규원 ♥ 박세리 — 모바일 청첩장</title>
+  <meta name="description" content="서규원 ♥ 박세리 — 모바일 청첩장" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#F4F2E8" />
+
+  <!-- KakaoTalk / Open Graph preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://skyllerhaneul.github.io/wedding/" />
+  <meta property="og:title" content="서규원 ♥ 박세리 결혼합니다" />
+  <meta property="og:description" content="2027.02.13 SAT 17:00" />
+  <meta property="og:image" content="https://skyllerhaneul.github.io/wedding/photos/og.jpg" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="1200" />
+
+  <!-- Fonts: Gowun Batang (display, Korean serif) + Cormorant Garamond (labels/numbers) + Pretendard (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Gowun+Batang:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+  />
+
+  <link rel="stylesheet" href="styles.css?v=ivory22" />
+</head>
+<body>
+  <div class="invitation">
+    <!-- ============================== HERO ============================== -->
+    <section class="hero" id="top">
+      <!-- Claude Monet, "The Japanese Footbridge and the Water Lily Pool, Giverny" (1899) — public domain -->
+      <div class="hero__painting" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <p class="hero__eyebrow"><span>WE'RE</span><span class="dot">❦</span><span>GETTING MARRIED</span></p>
+
+        <div class="hero__photo-frame">
+          <div class="hero__window">
+            <img class="hero__photo" data-component="hero-photo" alt="신랑신부 메인 사진" data-bind="mainPhoto" />
+          </div>
+          <button class="gallery__heart hero__heart" type="button" data-component="hero-heart" aria-label="좋아요">
+            <span class="gallery__heart-icon">♥</span>
+            <span class="gallery__heart-count"></span>
+          </button>
+        </div>
+
+        <h1 class="hero__names">
+          <span class="hero__name" data-bind="groomName"></span>
+          <span class="hero__amp">&amp;</span>
+          <span class="hero__name" data-bind="brideName"></span>
+        </h1>
+
+        <div class="hero__meta">
+          <p class="hero__date" data-bind="heroDate"></p>
+          <p class="hero__date hero__date--time" data-bind="heroTime"></p>
+          <p class="hero__venue">
+            <span data-bind="venueName"></span>
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================== GREETING ============================== -->
+    <section class="section section--greeting" id="greeting">
+      <div class="section__head">
+        <p class="section__label">INVITATION · 01</p>
+      </div>
+      <p class="greeting__body" data-bind="greeting"></p>
+      <div class="greeting__parents">
+        <div class="parent-col">
+          <strong class="parent-col__name" data-bind="groomName"></strong>
+          <p class="parent-col__line">
+            <span data-bind="groomFather"></span><span class="dot-sep"> · </span><span data-bind="groomMother"></span><span class="parent-col__of">의 아들</span>
+          </p>
+        </div>
+        <div class="parent-col">
+          <strong class="parent-col__name" data-bind="brideName"></strong>
+          <p class="parent-col__line">
+            <span data-bind="brideFather"></span><span class="dot-sep"> · </span><span data-bind="brideMother"></span><span class="parent-col__of">의 딸</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CALENDAR ============================== -->
+    <section class="section section--calendar">
+      <div class="section__head">
+        <p class="section__label">DATE · 02</p>
+        <h2 class="section__title" data-bind="dateBig"></h2>
+        <p class="section__sub" data-bind="dateDayTime"></p>
+      </div>
+
+      <div class="calendar-card">
+        <p class="calendar-card__month">
+          <span class="calendar-card__num" data-bind="calMonthNum"></span>
+          <span class="calendar-card__name" data-bind="calMonthName"></span>
+        </p>
+        <div class="calendar" data-component="calendar"></div>
+      </div>
+    </section>
+
+    <!-- ============================== MAP ============================== -->
+    <section class="section section--map">
+      <div class="section__head">
+        <p class="section__label">LOCATION · 03</p>
+        <h2 class="section__title">오시는 길</h2>
+      </div>
+
+      <div class="venue-card">
+        <p class="venue-card__name" data-bind="venueName"></p>
+        <p class="venue-card__addr" data-bind="venueAddress"></p>
+      </div>
+
+      <div class="map-frame">
+        <iframe
+          class="map"
+          data-component="map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="예식장 지도"
+        ></iframe>
+      </div>
+
+      <div class="nav-buttons" data-component="nav-buttons"></div>
+
+      <div class="transit">
+        <h3 class="transit__title">교통편</h3>
+        <ul class="transit__list" data-component="transit"></ul>
+      </div>
+    </section>
+
+    <!-- ============================== GALLERY ============================== -->
+    <section class="section section--gallery">
+      <div class="section__head">
+        <p class="section__label">GALLERY · 04</p>
+        <p class="gallery__guide">마음에 드는 사진의 <span class="gallery__guide-heart">♥</span> 를 눌러주세요.</p>
+      </div>
+
+      <div class="gallery" data-component="gallery"></div>
+    </section>
+
+    <!-- ============================== ACCOUNT ============================== -->
+    <section class="section section--account">
+      <div class="section__head">
+        <h2 class="section__title">마음 전하실 곳</h2>
+      </div>
+
+      <details class="account-card">
+        <summary>
+          <span class="account-card__side">신랑측</span>
+          <span class="account-card__hint">계좌번호 보기</span>
+          <span class="account-card__chev">+</span>
+        </summary>
+        <div class="account-list" data-component="account-groom"></div>
+      </details>
+
+      <details class="account-card">
+        <summary>
+          <span class="account-card__side">신부측</span>
+          <span class="account-card__hint">계좌번호 보기</span>
+          <span class="account-card__chev">+</span>
+        </summary>
+        <div class="account-list" data-component="account-bride"></div>
+      </details>
+    </section>
+
+    <!-- ============================== FOOTER ============================== -->
+    <footer class="footer">
+      <!-- Claude Monet, "The Iris Garden at Giverny" (1899–1900) — public domain -->
+      <div class="footer__painting" aria-hidden="true"></div>
+      <p class="footer__msg">
+        축하해주시는 모든 분들께<br />
+        진심으로 감사드립니다.
+      </p>
+
+      <button class="share-btn" data-action="share">
+        <span>↗</span> 청첩장 공유하기
+      </button>
+
+      <p class="footer__sig">
+        <span data-bind="groomName"></span> &amp; <span data-bind="brideName"></span>
+      </p>
+      <p class="footer__date" data-bind="dateLine"></p>
+    </footer>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" data-component="toast" role="status" aria-live="polite"></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" data-component="lightbox" aria-hidden="true">
+    <button class="lightbox__btn lightbox__close" data-action="lightbox-close" aria-label="닫기">×</button>
+    <button class="lightbox__btn lightbox__nav lightbox__nav--prev" data-action="lightbox-prev" aria-label="이전">‹</button>
+    <img class="lightbox__img" data-component="lightbox-img" alt="" />
+    <button class="lightbox__btn lightbox__nav lightbox__nav--next" data-action="lightbox-next" aria-label="다음">›</button>
+    <p class="lightbox__counter">
+      <span data-component="lightbox-current">1</span>
+      <span> / </span>
+      <span data-component="lightbox-total">18</span>
+    </p>
+  </div>
+
+  <!-- Firebase (gallery likes) — config in firebase-config.js -->
+  <script>
+    // Promise resolved by the module below once Firebase is ready (or skipped if no config)
+    window.WEDDING_FB_READY = new Promise((resolve) => {
+      window.__resolveFB = resolve;
+    });
+  </script>
+  <script src="firebase-config.js?v=20"></script>
+  <script type="module">
+    const cfg = window.WEDDING_FIREBASE_CONFIG;
+    if (!cfg || !cfg.apiKey) {
+      console.warn("[wedding] firebase-config.js not filled — likes disabled");
+      window.__resolveFB(null);
+    } else {
+      try {
+        const { initializeApp } = await import(
+          "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"
+        );
+        const fs = await import(
+          "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"
+        );
+        const app = initializeApp(cfg);
+        const db = fs.getFirestore(app);
+        window.WEDDING_FB = {
+          db,
+          doc: fs.doc,
+          setDoc: fs.setDoc,
+          getDocs: fs.getDocs,
+          collection: fs.collection,
+          increment: fs.increment,
+          onSnapshot: fs.onSnapshot,
+        };
+        window.__resolveFB(window.WEDDING_FB);
+      } catch (err) {
+        console.warn("[wedding] firebase init failed:", err);
+        window.__resolveFB(null);
+      }
+    }
+  </script>
+
+  <script src="data.js?v=24"></script>
+  <script src="script.js?v=21"></script>
+</body>
+</html>

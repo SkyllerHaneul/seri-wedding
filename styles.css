@@ -1,0 +1,1191 @@
+/* ============================================================
+   Wedding Invitation — Botanical Garden (식물원) Theme
+   ============================================================ */
+
+:root {
+  /* Paper + ink — soft greenhouse cream & deep forest green */
+  --paper: #f4f2e8;
+  --paper-deep: #e4e8d6;
+  --paper-light: #fbfaf4;
+  --ivory: #faf6ea;          /* soft ivory — middle sections background */
+  --line: #cbd4bd;
+  --ink: #13261a;
+  --ink-soft: #33493b;
+  --ink-faint: #6b7e70;
+  --chalk: #fbfaf4;          /* card / photo frame surface */
+  --accent: #5f8f2a;         /* fresh spring green (연두) — emphasis */
+  --accent-text: #4a7420;    /* deeper 연두 for small text on paintings */
+  --lilac-light: #d8eab8;    /* light 연두 (kept name for existing rules) */
+  --heart: #c9655c;          /* liked heart */
+  --sun: #b8644f;            /* calendar: sunday */
+  --sat: #4f7396;            /* calendar: saturday */
+  --sage-light: #c8d6b4;
+
+
+  /* Typography */
+  --font-display: "Gowun Batang", "Pretendard", ui-serif, Georgia, serif;
+  --font-body: "Pretendard", system-ui, -apple-system, sans-serif;
+  --font-mono: "Cormorant Garamond", "Gowun Batang", Georgia, serif;
+
+  /* Layout */
+  --max-w: 480px;
+  --pad-x: 28px;
+  --pad-y: 96px;
+}
+
+/* ----- Reset ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  background: #dfe5d2;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  font-variant-numeric: lining-nums; /* Cormorant: "1F" not "IF" */
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ----- Invitation container — greenhouse paper ----- */
+.invitation {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+  background-color: var(--ivory);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.12 0 0 0 0 0.06 0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 280px 280px;
+  box-shadow:
+    0 0 0 1px rgba(30, 60, 35, 0.06),
+    0 30px 80px -20px rgba(30, 60, 35, 0.28);
+  overflow: hidden;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: 64px var(--pad-x) 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  background: transparent;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  /* Soft daylight through greenhouse glass */
+  background-image:
+    radial-gradient(ellipse 70% 30% at 50% 0%, rgba(255, 255, 240, 0.6), transparent 65%),
+    radial-gradient(ellipse 50% 80% at 80% 60%, rgba(30, 70, 40, 0.04), transparent 60%);
+}
+
+/* Monet painting fading into the paper */
+.hero__painting {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 74%;
+  z-index: 0;
+  pointer-events: none;
+  background: url("assets/monet-bridge.jpg") 50% 30% / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 50%, rgba(0, 0, 0, 0.5) 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 50%, rgba(0, 0, 0, 0.5) 75%, transparent 100%);
+}
+.hero__painting::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(250, 246, 234, 0.18); /* light veil so it stays soft */
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  animation: heroIn 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both;
+}
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.32em;
+  color: var(--paper-light);
+  text-shadow: 0 1px 8px rgba(10, 30, 15, 0.55);
+  font-weight: 500;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hero__eyebrow .dot {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: var(--paper-light);
+}
+
+/* Main photo = arched greenhouse window.
+   Photo is cut into an arch; two concentric arch "window frames" sit around it. */
+.hero__photo-frame {
+  --arch: 999px 999px 8px 8px;
+  position: relative;
+  width: min(74%, 300px);
+  aspect-ratio: 3 / 4;
+  margin: 30px 0 26px;
+}
+/* single thin white arch line around the photo */
+.hero__photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: var(--arch);
+  border: 1.5px solid rgba(251, 250, 244, 0.9);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero__window {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: var(--arch);
+  isolation: isolate;
+  transform: translateZ(0); /* Safari: make overflow+radius clip the zoomed photo */
+  background: linear-gradient(135deg, var(--paper-deep), var(--line));
+  box-shadow:
+    0 0 0 5px var(--paper-light),
+    0 18px 40px -14px rgba(25, 50, 30, 0.4);
+}
+/* soft glass sheen */
+.hero__window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(125deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0) 32%,
+    rgba(255, 255, 255, 0) 70%,
+    rgba(255, 255, 255, 0.1) 100%);
+}
+.hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* zoom set from data.js → heroZoom */
+  transform-origin: var(--fx, 50%) var(--fy, 50%);
+  transform: scale(var(--zoom, 1));
+}
+
+.hero__names {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 10vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hero__name {
+  display: inline-block;
+}
+.hero__amp {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-size: 0.7em;
+  margin: 2px 0;
+  transform: translateY(2px);
+}
+
+.hero__meta {
+  margin-top: 6px;
+  text-align: center;
+}
+/* Nudge names + date down without moving the photo (layout stays centred) */
+.hero__names,
+.hero__meta {
+  position: relative;
+  top: 24px;
+}
+.hero__date {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  font-weight: 600;
+}
+.hero__date--time {
+  margin-top: 4px;
+  font-weight: 500;
+}
+.hero__venue {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   SECTION BASE
+   ============================================================ */
+.section {
+  position: relative;
+  padding: var(--pad-y) var(--pad-x);
+  text-align: center;
+  isolation: isolate;
+}
+/* Scroll reveal: only the content fades in — the painting behind is always there */
+.section > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+.section.in-view > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.section__accent-hold {
+  position: absolute;
+  left: -28px;
+  top: 100px;
+  width: var(--s);
+  height: var(--s);
+  transform: rotate(var(--r));
+  opacity: 0.85;
+  filter: drop-shadow(2px 6px 8px rgba(60, 40, 20, 0.18));
+  z-index: 0;
+  pointer-events: none;
+}
+/* Section accent hold colors are inherited via --hc from .hold--* */
+
+.section__head {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 40px;
+}
+.section__label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.section__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  position: relative;
+}
+.section__sub {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   GREETING
+   ============================================================ */
+.section--greeting {
+  background: transparent;
+}
+.greeting__body {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 2;
+  color: var(--ink);
+  white-space: pre-line;
+  max-width: 360px;
+  margin: 0 auto;
+  letter-spacing: 0.005em;
+}
+/* Table-like grid so both lines line up column by column:
+   father · mother | 의 아들/딸 | name */
+.greeting__parents {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(2, max-content); /* groom | bride, kept close */
+  justify-content: center;
+  column-gap: 36px;
+  text-align: center;
+  font-family: var(--font-display); /* same serif as the names */
+  color: var(--ink);
+  position: relative;
+  z-index: 2;
+}
+.parent-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.parent-col__name {
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+.parent-col__line {
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+.parent-col__of {
+  color: var(--ink-soft);
+}
+.dot-sep {
+  color: var(--ink-faint);
+}
+
+/* ============================================================
+   CALENDAR
+   ============================================================ */
+.section--calendar {
+  background: transparent;
+}
+.section--calendar .section__title {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 42px;
+  letter-spacing: 0;
+}
+.section--calendar .section__sub {
+  font-size: 16px;
+  margin-top: 14px;
+}
+
+/* Greenhouse-arch card: month name lives inside the arch,
+   the grid starts below where the curve ends */
+.calendar-card {
+  margin: 36px auto 0;
+  max-width: 340px;
+  padding: 34px 16px 14px;
+  border-radius: 50% 50% 10px 10px / 110px 110px 10px 10px;
+  position: relative;
+  z-index: 2;
+}
+.calendar-card__month {
+  height: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+.calendar-card__num {
+  font-size: 40px;
+  font-weight: 500;
+}
+.calendar-card__name {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 0.38em;
+  padding-left: 0.38em; /* optically re-center tracked text */
+  color: var(--ink-faint);
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px 0;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+.calendar__header {
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.16em;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.calendar__header.sun {
+  color: var(--sun);
+}
+.calendar__header.sat {
+  color: var(--sat);
+}
+.calendar__day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  position: relative;
+  font-weight: 400;
+}
+.calendar__day.muted {
+  color: var(--ink-faint);
+  opacity: 0.45;
+}
+.calendar__day.sun {
+  color: var(--sun);
+}
+.calendar__day.sat {
+  color: var(--sat);
+}
+/* Wedding day: soft spring-green circle (flat, no gloss) */
+.calendar__day.wedding {
+  color: #0b1a10;
+  font-weight: 700;
+}
+.calendar__day.wedding::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  z-index: -1;
+  border-radius: 50%;
+  background: #cfe6a6; /* flat light green, no border, no gradient */
+}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.section--gallery {
+  background: transparent;
+  padding-bottom: 70px;
+}
+.gallery__guide {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft, var(--ink-faint));
+}
+.gallery__guide-heart {
+  color: var(--heart);
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  position: relative;
+  z-index: 2;
+}
+.gallery__item {
+  background: var(--chalk);
+  padding: 4px;
+  box-shadow:
+    0 4px 10px -4px rgba(25, 50, 30, 0.18),
+    0 1px 2px rgba(25, 50, 30, 0.06);
+  position: relative;
+}
+.gallery__item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--paper-deep);
+  display: block;
+  cursor: zoom-in;
+  transition: transform 0.18s ease;
+}
+.gallery__item:active img {
+  transform: scale(0.97);
+}
+
+/* Heart / like button on each gallery thumb */
+.gallery__heart {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  background: rgba(255, 252, 244, 0.92);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, background 0.15s ease;
+  z-index: 4;
+  line-height: 1;
+}
+.gallery__heart:hover {
+  transform: scale(1.06);
+}
+.gallery__heart-icon {
+  color: #c9cfc0;
+  font-size: 13px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery__heart.is-liked .gallery__heart-icon {
+  color: var(--heart);
+}
+.gallery__heart.pop .gallery__heart-icon {
+  animation: heart-pop 0.5s ease;
+}
+@keyframes heart-pop {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.45); }
+  60%  { transform: scale(0.88); }
+  100% { transform: scale(1); }
+}
+.gallery__heart-count:empty {
+  display: none;
+}
+
+/* Heart on the hero photo frame — hidden from view, like data still tracked in Firestore */
+.hero__heart {
+  display: none;
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 24, 15, 0.94);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  padding: 24px;
+}
+.lightbox.show {
+  display: flex;
+  opacity: 1;
+}
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.6);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.lightbox__btn {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--chalk);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.15s ease;
+}
+.lightbox__btn:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+.lightbox__close {
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  font-size: 26px;
+  line-height: 1;
+}
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  font-size: 32px;
+  line-height: 1;
+  font-family: var(--font-mono);
+}
+.lightbox__nav--prev { left: 12px; }
+.lightbox__nav--next { right: 12px; }
+.lightbox__counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--chalk);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.gallery__counter {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--ink-soft);
+  position: relative;
+  z-index: 2;
+}
+.gallery__counter-sep {
+  margin: 0 6px;
+  color: var(--ink-faint);
+}
+
+/* ============================================================
+   MAP
+   ============================================================ */
+.section--map {
+  background: transparent;
+  text-align: left;
+}
+.section--map .section__head {
+  text-align: center;
+}
+.venue-card {
+  margin-bottom: 22px;
+  padding: 22px;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+.venue-card__name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.venue-card__hall {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+.venue-card__addr {
+  margin-top: 14px;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.map-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  z-index: 2;
+}
+.map {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  filter: saturate(0.85) contrast(0.95);
+}
+
+.nav-buttons {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+.nav-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 8px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  transition: transform 0.15s ease;
+}
+.nav-btn:active {
+  transform: translateY(1px);
+}
+.nav-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 9.5px;
+  font-weight: 700;
+}
+.nav-btn--kakao .nav-btn__icon {
+  background: #fee500;
+  color: #3d1d1d;
+}
+.nav-btn--naver .nav-btn__icon {
+  background: #03c75a;
+  color: var(--chalk);
+}
+.nav-btn--tmap .nav-btn__icon {
+  background: #ef4136;
+  color: var(--chalk);
+}
+
+.transit {
+  margin-top: 28px;
+  padding: 22px;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+.transit__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.transit__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.transit__label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.transit__line {
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.transit__list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.transit__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(95, 143, 42, 0.22);
+}
+
+/* ============================================================
+   ACCOUNT
+   ============================================================ */
+.section--account {
+  background: transparent;
+}
+
+.account-card {
+  margin-bottom: 12px;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.account-card summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+.account-card summary::-webkit-details-marker {
+  display: none;
+}
+.account-card__side {
+  flex: 0 0 auto;
+}
+.account-card__hint {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  font-style: normal;
+  font-weight: 500;
+}
+.account-card__chev {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--ink);
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+.account-card[open] .account-card__chev {
+  transform: rotate(45deg);
+}
+
+.account-list {
+  border-top: 1px dashed var(--line);
+  padding: 8px 20px 18px;
+  display: flex;
+  flex-direction: column;
+}
+.account-msg {
+  padding: 18px 4px 10px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.account-row:last-child {
+  border-bottom: none;
+}
+.account-row__info {
+  flex: 1;
+  min-width: 0;
+}
+.account-row__holder {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.account-row__num {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}
+.account-row__num strong {
+  color: var(--ink);
+  font-weight: 500;
+  margin-right: 4px;
+}
+.account-row__copy {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  transition: background 0.15s ease;
+}
+.account-row__copy:hover {
+  background: rgba(181, 215, 122, 0.7);
+}
+.account-row__copy.copied {
+  background: rgba(134, 182, 76, 0.85);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  position: relative;
+  padding: 60px var(--pad-x) calc(160px + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  background: transparent;
+  isolation: isolate;
+}
+.footer__painting {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("assets/monet-irises.jpg") 50% 100% / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.75) 30%, transparent 78%);
+  mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.75) 30%, transparent 78%);
+  opacity: 0.85;
+}
+
+.footer__msg {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  margin-bottom: 36px;
+  transition: transform 0.15s ease;
+}
+.share-btn:active {
+  transform: translateY(1px);
+}
+.share-btn span {
+  font-size: 14px;
+}
+.footer__sig {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.footer__date {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--ink-soft);
+  letter-spacing: 0.2em;
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translate(-50%, 60px);
+  background: var(--ink);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  padding: 12px 20px;
+  border-radius: 999px;
+  z-index: 100;
+  opacity: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.35s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.4);
+}
+.toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+.toast::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lilac-light);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Keep footer text legible over the iris-garden painting */
+.footer__msg,
+.footer__sig,
+.footer__date {
+  position: relative;
+  text-shadow:
+    0 0 10px rgba(251, 250, 244, 0.95),
+    0 0 22px rgba(251, 250, 244, 0.8);
+}
+.footer__date {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ============================================================
+   Stronger text (readability over the paintings)
+   ============================================================ */
+.greeting__body,
+.greeting__parents,
+.footer__msg {
+  font-weight: 700;
+}
+.section__label,
+.calendar-card__name,
+.calendar__header,
+.hero__eyebrow {
+  font-weight: 700;
+}
+.section__sub,
+.gallery__guide,
+.venue-card__addr,
+.transit__list li,
+.account-row__holder,
+.account-card__hint {
+  font-weight: 500;
+}
+.calendar {
+  font-weight: 600;
+}
+
+/* ============================================================
+   MIDDLE SECTIONS (invitation → gift): plain soft ivory.
+   Only the hero (top) and footer (bottom) keep Monet paintings,
+   which fade into the ivory of .invitation.
+   ============================================================ */
+
+/* Free-floating text: soft white glow so it stays crisp over the paintings */
+.greeting__body,
+.greeting__parents,
+.section__head {
+  text-shadow:
+    0 0 6px rgba(251, 250, 244, 0.95),
+    0 0 14px rgba(251, 250, 244, 0.9),
+    0 0 28px rgba(251, 250, 244, 0.7);
+}
+.section__label {
+  color: var(--accent-text);
+}
+
+/* ============================================================
+   FROSTED GLASS CARDS — the painting shows through, blurred
+   ============================================================ */
+.calendar-card,
+.venue-card,
+.transit,
+.account-card {
+  background: rgba(255, 255, 255, 0.42);
+  border: none;
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  backdrop-filter: blur(10px) saturate(1.15);
+  box-shadow: 0 10px 30px -18px rgba(25, 50, 30, 0.35);
+}
+.account-list,
+.account-row {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Share + map buttons: same frosted white as the cards (transit box etc.),
+   no border, soft shadow. */
+.nav-btn,
+.share-btn {
+  background: rgba(255, 255, 255, 0.42);
+  color: var(--ink);
+  border: none;
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  backdrop-filter: blur(10px) saturate(1.15);
+  box-shadow: 0 10px 30px -18px rgba(25, 50, 30, 0.35);
+}
+/* Share button sits over the footer painting: keep it white */
+.share-btn {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================================
+   BUTTONS — frosted glass with a light spring-green (연두) tint
+   (account copy)
+   ============================================================ */
+.account-row__copy {
+  background: rgba(196, 226, 140, 0.5);
+  color: var(--ink);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow:
+    0 8px 22px -12px rgba(50, 90, 20, 0.4); /* no outline */
+}
