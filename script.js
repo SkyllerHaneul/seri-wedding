@@ -328,6 +328,23 @@
         else if (action === "lightbox-next") showAt(current + 1);
         else if (e.target === lb) close();
       });
+      // Swipe left/right to change photo (mobile)
+      let sx = 0, sy = 0, tracking = false;
+      lb.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) { tracking = false; return; }
+        tracking = true;
+        sx = e.touches[0].clientX;
+        sy = e.touches[0].clientY;
+      }, { passive: true });
+      lb.addEventListener("touchend", (e) => {
+        if (!tracking) return;
+        tracking = false;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          showAt(current + (dx < 0 ? 1 : -1));
+        }
+      }, { passive: true });
       document.addEventListener("keydown", (e) => {
         if (!lb.classList.contains("show")) return;
         if (e.key === "Escape") close();
