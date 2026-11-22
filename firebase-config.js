@@ -21,10 +21,10 @@
 //
 // 값이 비어 있으면 좋아요 기능만 자동으로 꺼지고 사이트는 정상 동작합니다.
 window.WEDDING_FIREBASE_CONFIG = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
+    apiKey: "AIzaSyDEQHLD1OMkusaw9hbwvmkjbM0ZXh0KJRE",
+    authDomain: "seri-wedding-likes.firebaseapp.com",
+    projectId: "seri-wedding-likes",
+    storageBucket: "seri-wedding-likes.firebasestorage.app",
+    messagingSenderId: "117469762295",
+    appId: "1:117469762295:web:3f43a25a172193b31939f2"
 };
