@@ -233,16 +233,28 @@
     const open = (i) => {
       showAt(i);
       if (!lb) return;
+      if (lb.classList.contains("show")) return;
       lb.classList.add("show");
       lb.setAttribute("aria-hidden", "false");
       document.body.classList.add("lightbox-open");
+      // Push a history entry so the phone's back button closes the photo
+      history.pushState({ lightbox: true }, "");
     };
-    const close = () => {
+    const hide = () => {
       if (!lb) return;
       lb.classList.remove("show");
       lb.setAttribute("aria-hidden", "true");
       document.body.classList.remove("lightbox-open");
     };
+    // ×, background tap, ESC → go back, which fires popstate → hide()
+    const close = () => {
+      if (!lb || !lb.classList.contains("show")) return;
+      if (history.state && history.state.lightbox) history.back();
+      else hide();
+    };
+    window.addEventListener("popstate", () => {
+      if (lb && lb.classList.contains("show")) hide();
+    });
 
     // ---- Shared like handler (works for both hero & gallery hearts) ----
     const handleLike = async (heart) => {

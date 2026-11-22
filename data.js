@@ -57,7 +57,7 @@ window.WEDDING = {
 
   // 인사말
   greeting: `감사한 마음을 담아 초대하오니
-참석하시어 자리를 빛내주시기를 바랍니다.`,
+참석하시어 자리를 빛내주시기 바랍니다.`,
 
   // 메인 사진 (히어로)
   mainPhoto: "photos/seri_main.jpg",
