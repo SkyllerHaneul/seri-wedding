@@ -149,7 +149,12 @@
 
     // Hero is always the configured main photo (no like-based swapping)
     const displayHero = data.mainPhoto;
-    const displayGallery = data.gallery;
+    // Random order on every page load (Fisher–Yates on a copy)
+    const displayGallery = [...data.gallery];
+    for (let i = displayGallery.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [displayGallery[i], displayGallery[j]] = [displayGallery[j], displayGallery[i]];
+    }
     if (heroImg) {
       heroImg.src = displayHero;
       const z = data.heroZoom;
@@ -180,7 +185,7 @@
     const persistLiked = () =>
       localStorage.setItem("wedding_likes", JSON.stringify([...liked]));
 
-    // Render gallery thumbs + heart buttons (fixed order)
+    // Render gallery thumbs + heart buttons (shuffled order)
     displayGallery.forEach((src, i) => {
       const id = idFor(src);
       const count = counts.get(id) || 0;
