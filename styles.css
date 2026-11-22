@@ -247,7 +247,8 @@ button {
   display: inline-block;
 }
 .hero__amp {
-  color: var(--ink-faint);
+  color: var(--heart);
+  font-size: 0.6em;
 }
 
 .hero__meta {
